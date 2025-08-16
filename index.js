@@ -67,7 +67,7 @@ function freelancerComponent(freelancer) {
     $occupation.textContent = freelancer.occupation;
 
     const $rate = document.createElement("td");
-    $rate.textContent = `${freelancer.rate}`;
+    $rate.textContent = `$${freelancer.rate.toFixed(2)}`; // looked up how to adjust rate colum to $XX.00 format
 
     $tr.append($name, $occupation, $rate);
     return $tr;
