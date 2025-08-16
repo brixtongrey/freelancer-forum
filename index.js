@@ -54,3 +54,26 @@ function getAverageRate(freelancers) {
 console.log("freelancers is:", freelancers);
 
 // TO DO: Write a component function to represent a single freelancer.
+
+// ======= COMPONENT =========
+
+
+
+
+
+// ======== RENDER =========== displays what is in index.js 
+
+function render() {
+    // select the app id element
+    const $app = document.querySelector("#app");
+
+    $app.innerHTML = `
+    <h1>Freelance Forum</h1>
+    
+    
+    
+    `;
+}
+
+// invoke render function
+render();
