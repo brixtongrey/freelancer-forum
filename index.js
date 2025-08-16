@@ -14,19 +14,24 @@ const NUM_FREELANCERS = 100;
 const NUM_FREELANCER = NAMES.length;
 
 //======== STATE =======
-// {length: 5}, this object tells Array.from how many times to run the map function
+
+// TO DO: Initialize a state variable to an array of `NUM_FREELANCERS` freelancer objects.
 
 const freelancers = Array.from({length: NUM_FREELANCERS}, makeFreeLancer);
-console.log(freelancers);
 
-// need to create mapFunction, don't need map element, just index
+const averageRate = getAverageRate(freelancers);
+console.log(freelancers, averageRate);
+
+// TO DO: Write a function that returns a freelancer object with a randomly generated name, occupation, and rate according to the provided constants.
+
 function makeFreeLancer(_, index) {
+// need to create mapFunction ^, don't need map element, just index
 
     // create the array of object
     return {
         name: NAMES[index % NAMES.length],
         occupation: OCCUPATIONS[index % OCCUPATIONS.length],
-        price: getRandomRate(),
+        rate: getRandomRate(),
     };
 }
 
@@ -35,3 +40,17 @@ function getRandomRate() {
     return Math.floor(Math.random()* (PRICE_RANGE.max - PRICE_RANGE.min +1)) + PRICE_RANGE.min;
 } 
 
+// TO DO: Write a function that returns the average rate of all freelancers in state.
+
+function getAverageRate(freelancers) {
+    const average = 
+    freelancers.reduce((accum, currentRate) => {
+        return accum + currentRate.rate;
+
+    }, 0) / freelancers.length;
+    return average;
+}
+
+console.log("freelancers is:", freelancers);
+
+// TO DO: Write a component function to represent a single freelancer.
