@@ -57,9 +57,39 @@ console.log("freelancers is:", freelancers);
 
 // ======= COMPONENT =========
 
+function freelancerComponent(freelancer) {
+    const $tr = document.createElement("tr");
+    
+    const $name = document.createElement("td");
+    $name.textContent = freelancer.name;
 
+    const $occupation = document.createElement("td");
+    $occupation.textContent = freelancer.occupation;
 
+    const $rate = document.createElement("td");
+    $rate.textContent = `${freelancer.rate}`;
 
+    $tr.append($name, $occupation, $rate);
+    return $tr;
+}
+
+// TO DO: Write a component function to represent an array of freelancers.
+
+function FreelanceRows() {
+    const fragment = document.createDocumentFragment();
+
+    freelancers.forEach(freelancer => {
+        const $row = freelancerComponent(freelancer);
+        fragment.appendChild($row);
+    });
+    return fragment;
+}
+
+function AverageRate() {
+    const $p = document.createElement("p");
+    $p.textContent = `Average Rate: ${getAverageRate(freelancers)}`;
+    return $p;
+}
 
 // ======== RENDER =========== displays what is in index.js 
 
@@ -67,12 +97,30 @@ function render() {
     // select the app id element
     const $app = document.querySelector("#app");
 
+    $app.appendChild(AverageRate());
+
     $app.innerHTML = `
     <h1>Freelance Forum</h1>
-    
-    
-    
+    <div id ="AverageRateContainer"></div>
+     <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Occupation</th>
+            <th>Rate</th>
+          </tr>
+        </thead>
+        <tbody id="FreelanceRows"></tbody>
+    </table>
     `;
+
+    const $averageContainer = document.querySelector("#AverageRateContainer");
+    $averageContainer.appendChild(AverageRate());
+
+    const $tbody = document.querySelector("#FreelanceRows");
+        $tbody.appendChild(FreelanceRows());
+
+    
 }
 
 // invoke render function
