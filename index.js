@@ -16,16 +16,22 @@ const NUM_FREELANCER = NAMES.length;
 //======== STATE =======
 // {length: 5}, this object tells Array.from how many times to run the map function
 
-const freelancers = Array.from({length: NUM_FREELANCER}, makeFreeLancer);
+const freelancers = Array.from({length: NUM_FREELANCERS}, makeFreeLancer);
+console.log(freelancers);
 
 // need to create mapFunction, don't need map element, just index
 function makeFreeLancer(_, index) {
-    console.log(index);
+
     // create the array of object
     return {
-        name: NAMES[index],
-        occupation: OCCUPATIONS[index],
-        price: PRICE_RANGE[index],
-        freelancers: NUM_FREELANCERS[index],
+        name: NAMES[index % NAMES.length],
+        occupation: OCCUPATIONS[index % OCCUPATIONS.length],
+        price: getRandomRate(),
     };
 }
+
+// need to create a function for price_range to get random number - used ChatGPT as guidance on below
+function getRandomRate() {
+    return Math.floor(Math.random()* (PRICE_RANGE.max - PRICE_RANGE.min +1)) + PRICE_RANGE.min;
+} 
+
